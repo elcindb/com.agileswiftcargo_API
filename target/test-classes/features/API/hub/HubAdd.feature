@@ -19,5 +19,6 @@ Feature: As an administrator (admin) I want to be able to create a new hub recor
     # Api kullanicisi response bodyde donen "data" "New Hub ID" ile "api" "hub" endpoint'ine GET request göndererek "name" bilgisinin "Test Hub" oldugunu dogrular
 
     Examples:
-      | name     | phone       | address        |
-      | Test Hub | 01000000004 | Houston, Texas |
+      | name       | phone       | address        |
+      | Test Hub   | 01000000004 | Houston, Texas |
+      | selehattin | 123123132   | sinop          |
