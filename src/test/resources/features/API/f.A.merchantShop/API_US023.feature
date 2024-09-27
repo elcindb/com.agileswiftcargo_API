@@ -13,8 +13,8 @@ Feature: As an administrator (admin), I want to be able to access the detailed i
 
 
     Examples:
-      | id  | id  | merchant_id | name        | contact_no  | address  | status | default_shop | created_at                  | updated_at                  |
-      | 834 | 834 | 8           | Prof Cargo  | 33358975556 | New York | 1      | 0            | 2024-09-24T19:06:32.000000Z | 2024-09-24T19:06:32.000000Z |
+      | id  | id  | merchant_id | name                      | contact_no  | address    | status | default_shop | created_at                  | updated_at                  |
+      | 770 | 770 | 476         | sumeyra coskun kahraman   | 74141474147 | Washington | 1      | 1            | 2024-09-09T14:55:05.000000Z | 2024-09-09T14:55:05.000000Z |
 
 
 
@@ -49,4 +49,4 @@ Feature: As an administrator (admin), I want to be able to access the detailed i
 
     Examples:
       | id   |
-      | 5211 |
+      | 1111 |

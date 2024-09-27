@@ -3,8 +3,12 @@ package stepdefinitions.shopStepDef;
 import base.BaseTest;
 import com.google.gson.Gson;
 import io.cucumber.java.en.Given;
+import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
+import utilities.API_Utilities.API_Methods;
 
+import static hooks.HooksAPI.spec;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +17,8 @@ public class shopStepDef extends BaseTest {
     Gson gson = new Gson();
 
     String requestBody;
+
+    String mesaj = null;
 
 
     @Given("The api user verifies the information in the response body for the entry with the specified {int} index, including {int}, {string}, {string},{string}, {int}, {int}, {string} and {string}.")
@@ -37,8 +43,9 @@ public class shopStepDef extends BaseTest {
                         "updated_at", equalTo(updated_at));
     }
 
-    @Given("The api user prepares a POST request containing {string},{string}, {string},{string} and {string} information to send to the api shopadd endpoint.")
-    public void the_api_user_prepares_a_post_request_containing_and_information_to_send_to_the_api_shopadd_endpoint(String merchant_id, String name, String contact_no, String address, String status) {
+
+        @Given("The api user prepares a POST request containing {int},{string}, {string},{string} and {int} information to send to the api shopadd endpoint.")
+        public void the_api_user_prepares_a_post_request_containing_and_information_to_send_to_the_api_shopadd_endpoint(Integer merchant_id, String name, String contact_no, String address, Integer status) {
 
         requestBody = builder
                 .addParameterForMap("merchant_id", merchant_id)
@@ -51,6 +58,35 @@ public class shopStepDef extends BaseTest {
         System.out.println("POST Request Body : " + requestBody);
 
     }
+
+    @Given("The api user sends a POST request and saves the returned response.")
+    public void the_api_user_sends_a_post_request_and_saves_the_returned_response() {
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body(requestBody)
+                .post(API_Methods.fullPath);
+
+        response.prettyPrint();
+    }
+
+
+    @Given("The api user prepares a POST request containing {string}, {string},{string} and {int} information to send to the api shopadd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_and_information_to_send_to_the_api_shopadd_endpoint(String name, String contact_no, String address, Integer status) {
+
+        requestBody = builder
+                .addParameterForMap("name", name)
+                .addParameterForMap("contact_no", contact_no)
+                .addParameterForMap("address", address)
+                .addParameterForMap("status", status)
+                .buildUsingMap();
+
+        System.out.println("POST Request Body : " + requestBody);
+
+
+    }
+
 
 
 
