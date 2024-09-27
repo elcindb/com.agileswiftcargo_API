@@ -6,6 +6,7 @@ Feature: As an administrator (admin), I want to be able to access the detailed i
     * The api user sets "api/deliveryman/<id>" path parameters.
     * The api user sets "api/deliveryman/<id>" path parameters.
     * The api user sets "api/deliveryman/<id>" path parameters.
+    * The api user sets "api/deliveryman/<id>" path parameters.
     * The api user sends a "GET" request and saves the returned response.
     * The api user verifies that the status code is 200.
     * The api user verifies that the "message" information in the response body is "Success".
