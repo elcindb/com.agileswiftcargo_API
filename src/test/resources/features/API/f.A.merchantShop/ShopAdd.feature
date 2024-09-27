@@ -23,7 +23,5 @@ Feature: As an administrator (admin) I want to be able to create a new Shop reco
 
 
 
-
-
     Examples:
       |  |
