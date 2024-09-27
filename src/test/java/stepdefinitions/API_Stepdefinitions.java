@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class API_Stepdefinitions extends BaseTest {
 
     Gson gson = new Gson(); // Gson kütüphanesini kullanarak bir POJO nesnesini JSON formatında bir Stringe dönüştürebilirsiniz.
-    String requestBody;
+    public static String requestBody;
 
     @Given("The api user sets {string} path parameters.")
     public void the_api_user_sets_path_parameters(String pathParam) { //

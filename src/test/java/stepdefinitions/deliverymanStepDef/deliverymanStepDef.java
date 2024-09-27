@@ -2,7 +2,17 @@ package stepdefinitions.deliverymanStepDef;
 
 import base.BaseTest;
 import io.cucumber.java.en.Given;
+import io.restassured.builder.RequestSpecBuilder;
+import stepdefinitions.API_Stepdefinitions;
+import utilities.API_Utilities.API_Methods;
+import utilities.API_Utilities.Authentication;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static hooks.HooksAPI.spec;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
@@ -59,6 +69,71 @@ public class deliverymanStepDef extends BaseTest {
                     .assertThat()
                     .body("data[0].driving_license_image_id", equalTo(driving_license_image_id));
         }
+    }
+
+    @Given("The api user verifies that the {string},{string},{string} is {int}, {string}, {string} by sending a GET request to the {string} {string} endpoint with the {string} {string} returned in the response body.")
+    public void the_api_user_verifies_that_the_is_by_sending_a_get_request_to_the_endpoint_with_the_returned_in_the_response_body(String path1, String path2, String path3, int value1, String value2, String value3, String pp1, String pp2, String data, String reponseId) {
+        verification1(pp1, pp2, data, reponseId, path1, path2, path3, value1, value2, value3);
+    }
+
+
+    @Given("The api user prepares a POST request containing {string} information to send to the api deliverymanfilter endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_information_to_send_to_the_api_deliveryman_filter_endpoint(String email) {
+
+        API_Stepdefinitions.requestBody = builder.addParameterForMap("email", email).buildUsingMap();
+
+        System.out.println("POST Request Body : " + API_Stepdefinitions.requestBody);
+
+    }
+
+
+    public static void verification1(String pp1, String pp2, String dataKey, String responseIdKey, String path1, String path2, String path3, Object value1, Object value2, Object value3) {
+        repJP = response.jsonPath();
+
+        Object data = repJP.get(dataKey);  // "data" alanını elde ediyoruz
+
+        Object idValue = null;
+
+        if (data instanceof List) {
+            // Eğer "data" bir dizi ise
+            List<Map<String, Object>> dataList = (List<Map<String, Object>>) data;
+            idValue = dataList.get(0).get(responseIdKey);
+
+        } else if (data instanceof Map) {
+            // Eğer "data" bir obje ise
+            Map<String, Object> dataMap = (Map<String, Object>) data;
+            idValue = dataMap.get(responseIdKey);
+        }
+
+        int id = 0;
+
+        if (idValue instanceof String) {
+            id = Integer.parseInt((String) idValue);
+        } else {
+            id = (Integer) idValue;
+        }
+        System.out.println(responseIdKey + " : " + id);
+
+        spec = new RequestSpecBuilder().setBaseUri(configLoader.getApiConfig("base_url")).build();
+        spec.pathParams("pp1", pp1, "pp2", pp2, "pp3", id);
+
+
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .header("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get("/{pp1}/{pp2}/{pp3}");
+
+        response.then()
+                .assertThat()
+                .body(path1, equalTo(value1),
+                        path2, equalTo(value2),
+                        path3, equalTo(value3));
+
+        System.out.println(value1);
+        System.out.println(value2);
+        System.out.println(value3);
     }
 }
 
