@@ -7,6 +7,7 @@
 /Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/stepdefinitions/API_Stepdefinitions.java
 /Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/stepdefinitions/DB_Stepdefinitons.java
 /Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/stepdefinitions/deliverymanStepDef/deliverymanStepDef.java
+/Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/stepdefinitions/shopStepDef/shopStepDef.java
 /Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/utilities/API_Utilities/API_Methods.java
 /Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/utilities/API_Utilities/Authentication.java
 /Users/burhanakyuz/Desktop/WiseQuarterLecture/com.agileswiftcargo_API/src/test/java/utilities/API_Utilities/RequestBuilder.java
