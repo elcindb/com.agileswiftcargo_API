@@ -86,6 +86,36 @@ public class deliverymanStepDef extends BaseTest {
 
     }
 
+    @Given("The api user prepares a POST request containing {string}, {string}, {string}, {string}, {string}, {int}  and {int} information to send to the api deliverymanadd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_and_information_to_send_to_the_api_deliverymanadd_endpoint(
+            String name, String mobile, String email, String password,
+            String address, int hub_id, int status) {
+
+        API_Stepdefinitions.requestBody = builder
+                .addParameterForMap("name", name)
+                .addParameterForMap("mobile", mobile)
+                .addParameterForMap("email", email)
+                .addParameterForMap("password", password)
+                .addParameterForMap("address", address)
+                .addParameterForMap("hub_id", hub_id)
+                .addParameterForMap("status", status)
+                .buildUsingMap();
+
+        System.out.println("POST Request Body : " + API_Stepdefinitions.requestBody);
+
+    }
+
+    @Given("The api user verifies that the {string} is {int} by sending a GET request to the {string} {string} endpoint with the {string} {string} returned in the response body.")
+    public void the_api_user_verifies_that_the_is_by_sending_a_get_request_to_the_endpoint_with_the_returned_in_the_response_body(String path, int value, String pp1, String pp2, String data, String responseId) {
+        API_Methods.verification(pp1, pp2, data, responseId, path, value);
+    }
+
+
+
+
+
+    //*****Methods****
+
 
     public static void verification1(String pp1, String pp2, String dataKey, String responseIdKey, String path1, String path2, String path3, Object value1, Object value2, Object value3) {
         repJP = response.jsonPath();
@@ -135,5 +165,6 @@ public class deliverymanStepDef extends BaseTest {
         System.out.println(value2);
         System.out.println(value3);
     }
+
 }
 
