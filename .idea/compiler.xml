@@ -9,8 +9,5 @@
         <module name="agileSwiftCargoBackend" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="com.agileswiftcargo_API_Git" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
