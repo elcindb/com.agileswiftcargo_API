@@ -12,7 +12,7 @@ Feature: As an administrator (admin) I want to be able to create a new Shop reco
     * The api user verifies that the status code is 200.
     * The api user verifies that the "message" information in the response body is "New Shop Added".
     * The api user verifies that the "name" is "France Cargo" by sending a GET request to the "api" "shop" endpoint with the "data" "New Shop ID" returned in the response body.
-    # Api kullanicisi response bodyde donen "data" "New Hub ID" ile "api" "hub" endpoint'ine GET request göndererek "name" bilgisinin "Test Hub" oldugunu dogrular
+    # Api kullanicisi response bodyde donen "data" "New Shop ID" ile "api" "shop" endpoint'ine GET request göndererek "name" bilgisinin "Test Shop" oldugunu dogrular
 
 
     Examples:

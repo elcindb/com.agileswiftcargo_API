@@ -5,11 +5,8 @@ Feature: As an administrator (admin) I want to be able to access Shop List via A
   default_shop, created_at, updated_at) of the entry with id(x) in the response body.
 
     * The api user sets "api/shop/list" path parameters.
-    # Api kullanicisi "api/shop/list" path parametrelerini olusturur
     * The api user sends a "GET" request and saves the returned response.
-    # Api kullanicisi GET request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 200.
-    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies the information in the response body for the entry with the specified <dataindex> index, including <merchant_id>, "<name>", "<contact_no>","<address>", <status>, <default_shop>, "<created_at>" and "<updated_at>".
     # Api kullanıcısı response body icindeki <dataIndex> indexe sahip olanin <merchant_id>, "<name>", "<contact_no>","<address>", "<status>", "<default_shop>", "<created_at>" ve "<updated_at>" bilgilerini doğrular.
 

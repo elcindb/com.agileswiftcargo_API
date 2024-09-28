@@ -88,6 +88,19 @@ public class shopStepDef extends BaseTest {
     }
 
 
+    @Given("The api user prepares a patch request to send to the api shopedit endpoint.")
+    public void the_api_user_prepares_a_patch_request_to_send_to_the_api_shopedit_endpoint() {
+
+    }
+    @Given("The api user sends a PATCH request and saves the returned response.")
+    public void the_api_user_sends_a_patch_request_and_saves_the_returned_response() {
+
+    }
+    @Given("The api user verifies that the id information in the returned response body is the same as the id path parameter written in the endpoint.")
+    public void the_api_user_verifies_that_the_id_information_in_the_returned_response_body_is_the_same_as_the_id_path_parameter_written_in_the_endpoint() {
+
+    }
+
 
 
 
