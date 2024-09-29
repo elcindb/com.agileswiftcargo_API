@@ -13,13 +13,13 @@ import org.junit.runner.RunWith;
                 "junit:target/xml-report/cucumber.xml",
                 "rerun:target/failedRerun.txt"
         },
-        features = {"src/test/resources/features/API", "src/test/resources/features/DB"},
+        features = {"src/test/resources/features/API/todo", "src/test/resources/features/DB"},
         glue = {"stepdefinitions","hooks","utilities"},
-        tags = "@ab",
-        dryRun = false
+        tags = "@TC_5704",
+        dryRun =true
 
 
 
 )
-public class Runner {
+public class SemihRunner {
 }
