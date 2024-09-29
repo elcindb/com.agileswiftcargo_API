@@ -182,15 +182,6 @@ public class shopStepDef extends BaseTest {
 
 
 
-
-
-
-
-
-
-
-
-
 /*
      repJP = response.jsonPath();
 
