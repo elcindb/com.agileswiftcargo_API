@@ -1,11 +1,13 @@
 package stepdefinitions.shopStepDef;
 
 import base.BaseTest;
-import com.google.gson.Gson;
 import io.cucumber.java.en.Given;
 import io.restassured.http.ContentType;
-import org.hamcrest.Matchers;
+import org.junit.Assert;
 import utilities.API_Utilities.API_Methods;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static hooks.HooksAPI.spec;
 import static io.restassured.RestAssured.given;
@@ -14,11 +16,32 @@ import static org.junit.Assert.assertEquals;
 
 public class shopStepDef extends BaseTest {
 
-    Gson gson = new Gson();
 
     String requestBody;
 
     String mesaj = null;
+
+
+    public HashMap shopRequestBody() {
+
+        HashMap<String, Object> requestBody = new HashMap<>();
+
+        requestBody.put("merchant_id", 505);
+        requestBody.put("name", "Frank Cargo");
+        requestBody.put("contact_no", "1111111111");
+        requestBody.put("address", "France");
+        requestBody.put("status", 3);
+
+        return requestBody;
+    }
+
+
+    public HashMap shopRequestEmptyData() {
+
+        HashMap<String, Object> emptyData = new HashMap<>();
+
+        return emptyData;
+    }
 
 
     @Given("The api user verifies the information in the response body for the entry with the specified {int} index, including {int}, {string}, {string},{string}, {int}, {int}, {string} and {string}.")
@@ -87,19 +110,81 @@ public class shopStepDef extends BaseTest {
 
     }
 
+    //PATCH
+
+    @Given("The api user prepares a PATCH request containing {int},{string}, {string},{string} and {int} information to send to the api shopedit endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_and_information_to_send_to_the_api_shopedit_endpoint(Integer merchant_id, String name, String contact_no, String address, Integer status) {
+
+
+        requestBody = builder
+                .addParameterForMap("merchant_id", merchant_id)
+                .addParameterForMap("name", name)
+                .addParameterForMap("contact_no", contact_no)
+                .addParameterForMap("address", address)
+                .addParameterForMap("status", status)
+                .buildUsingMap();
+
+        System.out.println("POST Request Body : " + requestBody);
+
+    }
+
+
 
     @Given("The api user prepares a patch request to send to the api shopedit endpoint.")
     public void the_api_user_prepares_a_patch_request_to_send_to_the_api_shopedit_endpoint() {
+
+        map = shopRequestBody();
+
+        System.out.println("Patch body : " + map);
 
     }
     @Given("The api user sends a PATCH request and saves the returned response.")
     public void the_api_user_sends_a_patch_request_and_saves_the_returned_response() {
 
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body(map)
+                .patch(API_Methods.fullPath);
+
+        response.prettyPrint();
     }
-    @Given("The api user verifies that the id information in the returned response body is the same as the id path parameter written in the endpoint.")
-    public void the_api_user_verifies_that_the_id_information_in_the_returned_response_body_is_the_same_as_the_id_path_parameter_written_in_the_endpoint() {
+
+
+    @Given("The api user prepares a PATCH request that contains no data.")
+    public void the_api_user_prepares_a_patch_request_that_contains_no_data() {
+
+        map = shopRequestEmptyData();
+
+       // System.out.println("Patch body no data : " + map);
 
     }
+
+    @Given("The api user sends a PATCH request, saves the returned response, and verifies that the status code is {string} with the reason phrase Unauthorized.")
+    public void the_api_user_sends_a_patch_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_unauthorized(String string) {
+
+        try {
+            response = given()
+                    .spec(spec)
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .body(map)
+                    .patch(API_Methods.fullPath);
+        } catch (Exception e) {
+            mesaj= e.getMessage();
+        }
+
+        System.out.println("Mesaj : " + mesaj);
+        Assert.assertEquals(configLoader.getApiConfig("unauthorizedExceptionMessage"),mesaj);
+    }
+
+
+
+
+
+
+
 
 
 
