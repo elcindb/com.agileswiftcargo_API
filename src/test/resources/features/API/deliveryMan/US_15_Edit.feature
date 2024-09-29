@@ -25,6 +25,7 @@ Feature: As an administrator (admin), I want to be able to update Delivery man i
 
 
   Scenario Outline: admin When a PATCH body (name, mobile, email, address, delivery_charge, pickup_charge, return_charge) without an (id) is sent to the api/deliveryman/edit/{id} endpoint with valid authorization information, the status code returned is 203 and the message in the response body is "No id.",
+
     * The api user sets "api/deliveryman/edit" path parameters.
     * The api user prepares a PATCH request containing "<name>", "<mobile>", "<email>", "<address>", "<delivery_charge>", "<pickup_charge>"  and "<return_charge>" information to send to the api deliverymanedit endpoint.
     * The api user sends a "PATCH" request and saves the returned response.
@@ -36,3 +37,12 @@ Feature: As an administrator (admin), I want to be able to update Delivery man i
       | name             | mobile     | email                            | address | delivery_charge | pickup_charge | return_charge |
       | burhanTestUpdate | 0987654321 | updateburhantest@deliveryman.com | Atlanta | 100.00          | 200.00        | 30.00         |
 
+  Scenario Outline: invalid token When a PATCH body (name, mobile, email, address, delivery_charge, pickup_charge, return_charge) is sent to the api/deliveryman/edit/{id} endpoint with invalid authorization information, it should be verified that the status code returned is 401 and the message information in the response body is "Unauthenticated.".
+
+    * The api user sets "api/deliveryman/edit/<id>" path parameters.
+    * The api user prepares a PATCH request containing "<name>", "<mobile>", "<email>", "<password>", "<address>", <hub_id>  and <status> information to send to the api deliverymanadd endpoint.
+    * The api user sends a "PATCH" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+
+    Examples:
+      | id  | name             | mobile     | email                            | password | address       | hub_id | status |
+      | 466 | burhanTestUpdate | 0987654321 | updateburhantest@deliveryman.com | 123123   | New York City | 1      | 1      |

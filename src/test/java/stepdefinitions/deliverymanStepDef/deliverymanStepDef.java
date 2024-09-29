@@ -221,6 +221,13 @@ public class deliverymanStepDef extends BaseTest {
 
     }
 
+    @Given("The api user sends a {string} request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthenticated.")
+    public void the_api_user_sends_a_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_unauthenticated(String httpMethod) {
+        String response = (API_Stepdefinitions.requestBody == null) ? API_Methods.tryCatchRequest(httpMethod, null) : API_Methods.tryCatchRequest(httpMethod, API_Stepdefinitions.requestBody);
+        assertEquals(configLoader.getApiConfig("unauthenticatedExceptionMessage"), response);
+    }
+
+
 
 }
 
