@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="2.427">
+    <testcase classname="As an administrator (admin) I want to be able to access the entire regular pickup list via API connection." name="Invalid Token When a GET request is sent to the api/pickuprequest/regular endpoint with invalid authorization information, it should be verified that the status code returned is 401 and the message information in the response body is &quot;Unauthenticated.&quot;." time="2.244">
+        <failure message="expected:&lt;status code: 401, reason phrase: Unauthorized&gt; but was:&lt;null&gt;" type="java.lang.AssertionError"><![CDATA[* The api user sets "api/pickuprequest/regular" path parameters.............passed
+* The api user sends a "GET" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized..failed
+
+StackTrace:
+java.lang.AssertionError: expected:<status code: 401, reason phrase: Unauthorized> but was:<null>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at stepdefinitions.API_Stepdefinitions.the_api_user_sends_a_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_unauthorized(API_Stepdefinitions.java:47)
+	at ✽.The api user sends a "GET" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.(file:///C:/Users/ustas/IdeaProjects/com.agileswiftcargo_API/src/test/resources/features/API/pickupRequest/API_US029.feature:23)
+]]></failure>
+    </testcase>
+</testsuite>
