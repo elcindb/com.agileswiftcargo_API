@@ -6,6 +6,7 @@ import io.cucumber.java.Scenario;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -274,5 +275,8 @@ public class API_Methods extends BaseTest {
         }
     }
 
+    public static void assertBodyMatchers(String path, Object value) {
+        response.then().assertThat().body(path, Matchers.equalTo(value));
+    }
 
 }

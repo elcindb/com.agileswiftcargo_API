@@ -15,7 +15,7 @@ Feature:As an administrator (admin) I want to be able to access the entire regul
       | dataindex | id  | request_type | merchant_id | adress        | note             | parcel_quantity | name | phone | cod_amount | invoice | weight | exchange | created_at                  | updated_at                  |
       | 0         | 134 | 1           | 2         | null | En toute sécurité | 0              | null | null  | 0.00      | null    | 0      | 0        | 2024-09-27T16:03:28.000000Z | 2024-09-27T16:03:28.000000Z |
 
-
+@ab
   Scenario: Invalid Token When a GET request is sent to the api/pickuprequest/regular endpoint with invalid authorization information, it should be verified that the status code returned is 401 and the message information in the response body is "Unauthenticated.".
 
     * The api user sets "api/pickuprequest/regular" path parameters.

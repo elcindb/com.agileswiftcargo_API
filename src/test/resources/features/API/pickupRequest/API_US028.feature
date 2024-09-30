@@ -14,7 +14,7 @@ Feature: As an administrator (admin) I want to be able to access the entire pick
 
     Examples:
       | dataindex | id  | request_type | merchant_id | adress | note               | parcel_quantity | name            | phone        | cod_amount | invoice | weight | exchange | created_at                  | updated_at                  |
-      | 0         | 133 | 2            | 2         | Aix en Provence | En toute sécurité | 0               | Sena Didici | 12345678910 | 1.00       | 12 | 15      | 1        | 2024-09-27T15:11:03.000000Z | 2024-09-27T15:11:03.000000Z |
+      | 1         | 133 | 2            | 2         | Aix en Provence | En toute sécurité | 0               | Sena Didici | 12345678910 | 1.00       | 12 | 15      | 1        | 2024-09-27T15:11:03.000000Z | 2024-09-27T15:11:03.000000Z |
 
   Scenario: Invalid Token When a GET request is sent to the api/pickuprequest/all endpoint with invalid authorization information, it should be verified that the status code returned is 401 and the message information in the response body is "Unauthenticated.".
 
