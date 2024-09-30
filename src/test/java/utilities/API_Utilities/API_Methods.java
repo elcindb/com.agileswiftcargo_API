@@ -69,20 +69,34 @@ public class API_Methods extends BaseTest {
                 }
                 break;
             case "POST":
+                if (requestBody != null) {
                 response = given()
                         .spec(spec)
                         .contentType(ContentType.JSON)
                         .when()
                         .body(requestBody)
                         .post(fullPath);
+                } else {
+                    response = given()
+                            .spec(spec)
+                            .when()
+                            .post(fullPath);
+                }
                 break;
             case "PATCH":
+                if (requestBody != null) {
                 response = given()
                         .spec(spec)
                         .contentType(ContentType.JSON)
                         .when()
                         .body(requestBody)
                         .patch(fullPath);
+                } else {
+                    response = given()
+                            .spec(spec)
+                            .when()
+                            .patch(fullPath);
+                }
                 break;
             case "DELETE":
                 response = given()

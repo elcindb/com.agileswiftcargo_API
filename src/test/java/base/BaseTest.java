@@ -14,13 +14,10 @@ public abstract class BaseTest {
 
     protected static ConfigLoader configLoader;
     protected static ExcelDataReader excelData;
-
     protected static JsonPath repJP;
     protected static Response response;
     protected static HashMap map;
-
     protected static TestData testData;
-
     protected JSONObject requestBody;
     protected RequestBuilder builder;
 
