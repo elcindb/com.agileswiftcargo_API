@@ -12,22 +12,24 @@ Feature: As an administrator (admin), I want to be able to delete Merchant infor
 
     Examples:
       | id  |
-      | 525 |
+      | 601 |
 
   @TC_2102
   Scenario:admin Send a DELETE request to the api/merchant/delete/{id} endpoint  that does not
   contain valid authorization information and (id), the status code returned is 203 and the message in the response body is "No id.".
 
-    * The api user sets "api/merchant/delete/<id>" path parameters.
+    * The api user sets "api/merchant/delete" path parameters.
     * The api user sends a "DELETE" request and saves the returned response.
     * The api user verifies that the status code is 203.
-    * The api user verifies that the "message" information in the response body is, "No id.".
+    * The api user verifies that the "message" information in the response body is "No id.".
+
+
 
   @TC_2103
-  Scenario:admin Send a DELETE request to the api/merchant/delete/{id} endpoint  that does not
-  contain valid authorization information and (id), the status code returned is 401 and the message in the response body is "Unauthenticated.".
+  Scenario:Invalid Token Send a GET request to the api/merchant/list endpoint with invalid authorization, verify that the response
+  status code is 401 and the message in the response body is 'Unauthenticated.'
 
     * The api user sets "api/merchant/delete/<id>" path parameters.
     * The api user sends a "DELETE" request and saves the returned response.
-    * The api user verifies that the status code is 401.
+    * The api user verifies that the status code is, 401.
     * The api user verifies that the "message" information in the response body is, "Unauthenticated.".
