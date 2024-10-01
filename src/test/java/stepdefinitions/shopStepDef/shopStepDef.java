@@ -4,6 +4,7 @@ import base.BaseTest;
 import io.cucumber.java.en.Given;
 import io.restassured.http.ContentType;
 import org.junit.Assert;
+import stepdefinitions.API_Stepdefinitions;
 import utilities.API_Utilities.API_Methods;
 
 import java.util.HashMap;
@@ -33,14 +34,6 @@ public class shopStepDef extends BaseTest {
         requestBody.put("status", 3);
 
         return requestBody;
-    }
-
-
-    public HashMap shopRequestEmptyData() {
-
-        HashMap<String, Object> emptyData = new HashMap<>();
-
-        return emptyData;
     }
 
 
@@ -110,22 +103,21 @@ public class shopStepDef extends BaseTest {
 
     }
 
-    //PATCH
+    //PATCH------------------------
 
     @Given("The api user prepares a PATCH request containing {int},{string}, {string},{string} and {int} information to send to the api shopedit endpoint.")
     public void the_api_user_prepares_a_patch_request_containing_and_information_to_send_to_the_api_shopedit_endpoint(Integer merchant_id, String name, String contact_no, String address, Integer status) {
 
 
-        requestBody = builder
-                .addParameterForMap("merchant_id", merchant_id)
-                .addParameterForMap("name", name)
-                .addParameterForMap("contact_no", contact_no)
-                .addParameterForMap("address", address)
-                .addParameterForMap("status", status)
-                .buildUsingMap();
+        API_Stepdefinitions.requestBody = builder
+                .addParameterForJSONObject("merchant_id", merchant_id)
+                .addParameterForJSONObject("name", name)
+                .addParameterForJSONObject("contact_no", contact_no)
+                .addParameterForJSONObject("address", address)
+                .addParameterForJSONObject("status", status)
+                .buildUsingJSONObject();
 
-        System.out.println("POST Request Body : " + requestBody);
-
+        System.out.println("POST Request Body : " + API_Stepdefinitions.requestBody);
     }
 
 
@@ -138,6 +130,8 @@ public class shopStepDef extends BaseTest {
         System.out.println("Patch body : " + map);
 
     }
+
+
     @Given("The api user sends a PATCH request and saves the returned response.")
     public void the_api_user_sends_a_patch_request_and_saves_the_returned_response() {
 
@@ -152,14 +146,6 @@ public class shopStepDef extends BaseTest {
     }
 
 
-    @Given("The api user prepares a PATCH request that contains no data.")
-    public void the_api_user_prepares_a_patch_request_that_contains_no_data() {
-
-        map = shopRequestEmptyData();
-
-       // System.out.println("Patch body no data : " + map);
-
-    }
 
     @Given("The api user sends a PATCH request, saves the returned response, and verifies that the status code is {string} with the reason phrase Unauthorized.")
     public void the_api_user_sends_a_patch_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_unauthorized(String string) {
@@ -180,21 +166,12 @@ public class shopStepDef extends BaseTest {
     }
 
 
+    @Given("The api user prepares a PATCH request containing no information to send to the api shopedit endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_no_information_to_send_to_the_api_shopedit_endpoint() {
 
+        API_Stepdefinitions.requestBody = builder.buildUsingMap(); //no data boş birobject oluşturulur
 
-/*
-     repJP = response.jsonPath();
-
-        assertEquals(merchant_id, repJP.getInt("data[" + dataIndex + "].merchant_id"));
-        assertEquals(name, repJP.getString("data[" + dataIndex + "].name"));
-        assertEquals(contact_no, repJP.getString("data[" + dataIndex + "].contact_no"));
-        assertEquals(address, repJP.getString("data[" + dataIndex + "].address"));
-        assertEquals(status, repJP.getInt("data[" + dataIndex + "].status"));
-        assertEquals(default_shop, repJP.getInt("data[" + dataIndex + "].default_shop"));
-        assertEquals(created_at, repJP.getString("data[" + dataIndex + "].created_at"));
-        assertEquals(updated_at, repJP.getString("data[" + dataIndex + "].updated_at"));
-*/
-
-
-
+        System.out.println(API_Stepdefinitions.requestBody);
     }
+
+}
