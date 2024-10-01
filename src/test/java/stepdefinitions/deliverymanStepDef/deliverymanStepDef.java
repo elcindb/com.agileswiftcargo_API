@@ -3,6 +3,8 @@ package stepdefinitions.deliverymanStepDef;
 import base.BaseTest;
 import io.cucumber.java.en.Given;
 import io.restassured.builder.RequestSpecBuilder;
+import org.json.JSONObject;
+import org.junit.Assert;
 import stepdefinitions.API_Stepdefinitions;
 import utilities.API_Utilities.API_Methods;
 import utilities.API_Utilities.Authentication;
@@ -19,6 +21,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class deliverymanStepDef extends BaseTest {
+
+    JSONObject editDeliveryman;
 
     @Given("The api user verifies the information in the response body for the entry with the specified {int} index, including {int}, {int}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}.")
     public void the_api_user_verifies_the_information_in_the_response_body_for_the_entry_with_the_specified_index_including(int dataIndex, int user_id, int status, String delivery_charge, String pickup_charge,
@@ -86,6 +90,59 @@ public class deliverymanStepDef extends BaseTest {
 
     }
 
+    @Given("The api user prepares a POST request containing {string}, {string}, {string}, {string}, {string}, {int}  and {int} information to send to the api deliverymanadd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_and_information_to_send_to_the_api_deliverymanadd_endpoint(
+            String name, String mobile, String email, String password,
+            String address, int hub_id, int status) {
+
+        API_Stepdefinitions.requestBody = builder
+                .addParameterForMap("name", name)
+                .addParameterForMap("mobile", mobile)
+                .addParameterForMap("email", email)
+                .addParameterForMap("password", password)
+                .addParameterForMap("address", address)
+                .addParameterForMap("hub_id", hub_id)
+                .addParameterForMap("status", status)
+                .buildUsingMap();
+
+        System.out.println("POST Request Body : " + API_Stepdefinitions.requestBody);
+
+    }
+
+    @Given("The api user verifies that the {string} is {int} by sending a GET request to the {string} {string} endpoint with the {string} {string} returned in the response body.")
+    public void the_api_user_verifies_that_the_is_by_sending_a_get_request_to_the_endpoint_with_the_returned_in_the_response_body(String path, int value, String pp1, String pp2, String data, String responseId) {
+        API_Methods.verification(pp1, pp2, data, responseId, path, value);
+    }
+
+    @Given("The api user prepares a PATCH request containing {string}, {string}, {string}, {string}, {string}, {int}  and {int} information to send to the api deliverymanadd endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_and_information_to_send_to_the_api_deliverymanadd_endpoint(
+            String name, String mobile, String email, String password,
+            String address, int hub_id, int status) {
+
+        API_Stepdefinitions.requestBody = builder
+                .addParameterForJSONObject("name", name)
+                .addParameterForJSONObject("mobile", mobile)
+                .addParameterForJSONObject("email", email)
+                .addParameterForJSONObject("password", password)
+                .addParameterForJSONObject("address", address)
+                .addParameterForJSONObject("hub_id", hub_id)
+                .addParameterForJSONObject("status", status)
+                .buildUsingJSONObject();
+
+        System.out.println("PATCH Request Body : " + API_Stepdefinitions.requestBody);
+
+    }
+
+    @Given("The api user prepares a PATCH request containing no information to send to the api deliverymanedit endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_no_information_to_send_to_the_api_deliverymanadd_endpoint() {
+
+        API_Stepdefinitions.requestBody = builder.buildUsingMap();
+        System.out.println(API_Stepdefinitions.requestBody);
+    }
+
+
+    //*****Methods****
+
 
     public static void verification1(String pp1, String pp2, String dataKey, String responseIdKey, String path1, String path2, String path3, Object value1, Object value2, Object value3) {
         repJP = response.jsonPath();
@@ -135,5 +192,42 @@ public class deliverymanStepDef extends BaseTest {
         System.out.println(value2);
         System.out.println(value3);
     }
+
+    @Given("The api user sends a {string} request, saves the returned response, and verifies that the status code is '400' with the reason phrase Bad Request.")
+    public void the_api_user_sends_a_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_bad_request(String httpMethod) {
+
+        String response = (API_Stepdefinitions.requestBody == null) ? API_Methods.tryCatchRequest(httpMethod, null) : API_Methods.tryCatchRequest(httpMethod, API_Stepdefinitions.requestBody);
+        assertEquals(configLoader.getApiConfig("badRequestExceptionMessage"), response);
+
+    }
+
+
+    @Given("The api user prepares a PATCH request containing {string}, {string}, {string}, {string}, {string}, {string}  and {string} information to send to the api deliverymanedit endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_and_information_to_send_to_the_api_deliverymanadd_endpoint(
+            String name, String mobile, String email, String address,
+            String delivery_charge, String pickup_charge, String return_charge) {
+
+        API_Stepdefinitions.requestBody = builder
+                .addParameterForJSONObject("name", name)
+                .addParameterForJSONObject("mobile", mobile)
+                .addParameterForJSONObject("email", email)
+                .addParameterForJSONObject("address", address)
+                .addParameterForJSONObject("delivery_charge", delivery_charge)
+                .addParameterForJSONObject("pickup_charge", pickup_charge)
+                .addParameterForJSONObject("return_charge", return_charge)
+                .buildUsingJSONObject();
+
+        System.out.println("PATCH Request Body : " + API_Stepdefinitions.requestBody);
+
+    }
+
+    @Given("The api user sends a {string} request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthenticated.")
+    public void the_api_user_sends_a_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_unauthenticated(String httpMethod) {
+        String response = (API_Stepdefinitions.requestBody == null) ? API_Methods.tryCatchRequest(httpMethod, null) : API_Methods.tryCatchRequest(httpMethod, API_Stepdefinitions.requestBody);
+        assertEquals(configLoader.getApiConfig("unauthenticatedExceptionMessage"), response);
+    }
+
+
+
 }
 

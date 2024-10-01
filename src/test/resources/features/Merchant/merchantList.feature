@@ -1,5 +1,3 @@
-
-
 Feature: As an administrator (admin) I want to be able to access Merchant List via API connection.
 
   @TC_1701
@@ -17,7 +15,8 @@ Feature: As an administrator (admin) I want to be able to access Merchant List v
 
     Examples:
       | dataindex | user_id | business_name | merchant_unique_id | current_balance | opening_balance | vat  |
-      | 0         | 1048    | Firm AŞ  | 595163             | 0.00            | 0.00            | 0.00 |
+      | 0         | 1048    | Firm AŞ       | 595163             | 0.00            | 0.00            | 0.00 |
+
   @TC_1702
   Scenario: Invalid Token Send a GET request to the api/merchant/list endpoint with invalid authorization, verify that the response
   status code is 401 and the message in the response body is 'Unauthenticated.'
@@ -26,3 +25,4 @@ Feature: As an administrator (admin) I want to be able to access Merchant List v
     * The api user sends a "GET" request and saves the returned response.
     # Api kullanicisi GET request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 401.
+    * The api user verifies that the "message" information in the response body is, "Unauthenticated.".
