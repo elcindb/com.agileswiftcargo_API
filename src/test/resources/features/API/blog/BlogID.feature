@@ -11,9 +11,10 @@ Feature:As an administrator (admin), I want to be able to access the detailed in
     Then The api user verifies that the status code is 200.
 
 
-  Scenario:[4502]Admin sends a GET request with valid authorization information and correct data (id)
+  Scenario: Admin sends a GET request with valid authorization information and correct data (id)
   to "api/blog/{id}" endpoint,verifies the data in the response body (id, title, image_id,
   description, position, status, created_by, views, created_at, updated_at).
+
     Given The api user sets "api/blog/{id}" path parameters.
 
     When  The api user sends a "GET" request and saves the returned response.
@@ -21,7 +22,7 @@ Feature:As an administrator (admin), I want to be able to access the detailed in
     Then The api user verifies that the status code is 200.
 
 
-  Scenario:[4503] admin Send a GET request to the "api/blog/{id}" endpoint without an id and with valid authorization, verify that the
+  Scenario:admin Send a GET request to the "api/blog/{id}" endpoint without an id and with valid authorization, verify that the
   response status code is 203 and the message in the response body is 'No id.'
 
     Given The api user sets "api/blog" path parameters.
@@ -46,7 +47,7 @@ Feature:As an administrator (admin), I want to be able to access the detailed in
 
     Examples:
       | id   |
-      | 555 |
+      | 222 |
 
   Scenario Outline:Invalid Token Send a GET request to the "api/blog/{id}" endpoint with invalid authorization, verify
   that the response status code is 401 and the message in the response body is 'Unauthenticated.
