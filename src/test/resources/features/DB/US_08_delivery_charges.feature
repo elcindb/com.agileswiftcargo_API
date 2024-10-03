@@ -7,4 +7,3 @@ Feature: Make a data record by entering all data in the delivery_charges table v
     * Verified that 1 row added to the table.
     * DataBase closed.
 
-  Scenario: Verif

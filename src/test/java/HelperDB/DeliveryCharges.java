@@ -16,8 +16,7 @@ public class DeliveryCharges {
     private double outside_city;
     private int position;
     private int status;
-    private int created_at;
-    private int updated_at;
+
 
     public DeliveryCharges() {
         this.category_id = faker.number().numberBetween(1, 6);

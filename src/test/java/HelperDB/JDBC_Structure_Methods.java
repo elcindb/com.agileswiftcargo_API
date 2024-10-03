@@ -15,7 +15,7 @@ public class JDBC_Structure_Methods {
     public static ResultSet resultSet;
     public static String query;
     public static ConfigLoader configLoader;
-    public static Map<Integer, String> dataMaps = new HashMap<>();
+    public static Map<Object, Object> dataMaps = new HashMap<>();
 
     public static void createConnection() {
         configLoader = new ConfigLoader();
