@@ -1,6 +1,7 @@
 package stepdefinitions.DB_StepDefinitions;
 
 import HelperDB.DeliveryCharges;
+import HelperDB.DeliveryMan;
 import Manage.Manage;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
@@ -15,6 +16,8 @@ import static org.junit.Assert.*;
 
 public class US_7_8_9 extends Manage {
     DeliveryCharges deliveryCharges = new DeliveryCharges();
+    DeliveryMan deliveryMan = new DeliveryMan();
+
 
     //**************____ US_07 START ____******************
     @Given("Query prepared for currency table.")
@@ -44,7 +47,7 @@ public class US_7_8_9 extends Manage {
                 String expectedCountry = entry.getValue();
 
                 // Gerçek datayı map'ten alıyoruz
-                String actualCountry = dataMaps.get(expectedId);
+                String actualCountry = (String) dataMaps.get(expectedId);
                 // Assert ile karşılaştırma yapıyoruz
                 assertEquals("Country doesn't match for ID: " + expectedId, expectedCountry, actualCountry);
 
@@ -92,5 +95,21 @@ public class US_7_8_9 extends Manage {
         Assert.assertEquals(expectedRow, actualRow);
 
     }
+
+//**************____ US_08 END ____******************
+
+//**************____ US_09 START ____******************
+
+    @Given("Query prepared for deliveryman table.")
+    public void query_prepared_for_deliveryman_table() throws SQLException {
+        query = getUS_09_delivery_man();
+        preparedStatement = getPraperedStatement(query);
+        preparedStatement.setDouble(1, deliveryMan.getDelivery_charge());
+        preparedStatement.setInt(2, deliveryMan.getId());
+
+    }
+
+//**************____ US_09 END ____******************
+
 
 }
