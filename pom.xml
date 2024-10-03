@@ -118,8 +118,9 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.13.0</version>
                         <configuration>
-                            <source>1.8</source> <!-- veya kullandığınız Java versiyonu -->
+                           <source>1.8</source> <!-- veya kullandığınız Java versiyonu -->
                             <target>1.8</target>
+                            <compilerArgs>--enable-preview</compilerArgs>
                         </configuration>
                     </plugin>
                 </plugins>

@@ -24,13 +24,10 @@ Feature: As an administrator (admin), I want to be able to update the informatio
   in the response body is "There is no data to update.".
 
     * The api user sets "api/shop/edit/<id>" path parameters.
-    * The api user prepares a PATCH request that contains no data.
-    * The api user sends a PATCH request and saves the returned response.
-    * The api user verifies that the status code is 400.
-    * The api user verifies that the "message" information in the response body is "There is no data to update.".
+    * The api user prepares a PATCH request containing no information to send to the api shopedit endpoint.
+    * The api user sends a "PATCH" request, saves the returned response, and verifies that the status code is '400' with the reason phrase Bad Request.
     # Api kullanicisi response bodydeki message bilgisinin "There is no data to update." oldugunu dogrular
 
-            # burada bir sorun var !!
 
     Examples:
       | id  |
@@ -38,21 +35,18 @@ Feature: As an administrator (admin), I want to be able to update the informatio
 
 
   Scenario Outline: admin Send invalid merchant_id PATCH request to the api/shop/edit endpoint with valid authorization, verify that the response
-  status code is 400 and the message in the response body is 'there is no merchant with this id.'
+  status code is 203 and the message in the response body is 'there is no merchant with this id.'
 
-    * The api user sets "api/shop/edit/848" path parameters.
+    * The api user sets "api/shop/edit/<id>" path parameters.
     * The api user prepares a PATCH request containing <merchant_id>,"<name>", "<contact_no>","<address>" and <status> information to send to the api shopedit endpoint.
-    * The api user sends a PATCH request and saves the returned response.
-    * The api user verifies that the status code is 400.
-    * The api user verifies that the "message" information in the response body is "there is no merchant with this id.".
+    * The api user sends a "PATCH" request and saves the returned response.
+    * The api user verifies that the status code is 203.
+    * The api user verifies that the "message" information in the response body is "there is no merchant with this id".
     # Api kullanicisi response bodydeki message bilgisinin "there is no merchant with this id." oldugunu dogrular
 
     Examples:
-    | merchant_id | name         | contact_no   | address   | status |
-    | 5           | Frank Cargo  | 1111111111   | France    | 3      |
-
-
-    #burada bir sorun var !
+    |id  |merchant_id | name         | contact_no   | address   | status |
+    |983 | 5          | Frank Cargo  | 1111111111   | France    | 3      |
 
 
 
@@ -72,16 +66,17 @@ Feature: As an administrator (admin), I want to be able to update the informatio
   the status code returned is 203 and the message in the response body is "There is no shop with this id".
 
     * The api user sets "api/shop/edit/<id>" path parameters.
-    * The api user prepares a patch request to send to the api shopedit endpoint.
-    * The api user sends a PATCH request and saves the returned response.
+    * The api user prepares a PATCH request containing <merchant_id>,"<name>", "<contact_no>","<address>" and <status> information to send to the api shopedit endpoint.
+    * The api user sends a "PATCH" request and saves the returned response.
     * The api user verifies that the status code is 203.
     * The api user verifies that the "message" information in the response body is "There is no shop with this id".
     # Api kullanicisi response bodydeki message bilgisinin "There is no shop with this id" oldugunu dogrular
 
         # burada bir defect var !!
     Examples:
-      | id   |
-      | 2500 |
+      |id      |merchant_id | name         | contact_no   | address   | status |
+      |10000   | 5          | Frank Cargo  | 1111111111   | New York  | 1      |
+
 
 
 

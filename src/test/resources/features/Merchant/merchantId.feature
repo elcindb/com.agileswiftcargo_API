@@ -21,10 +21,12 @@ Feature: As an administrator (admin), I want to be able to access the detailed i
   Scenario: Invalid Token Send a GET request to the api/merchant/list endpoint with invalid authorization, verify that the response
   status code is 400 and the message in the response body is 'Unauthenticated.'
     * The api user sets "api/merchant/<id>" path parameters.
-    # Api kullanicisi "api/hub/{id}" path parametrelerini olusturur
+    # Api kullanicisi "api/merchant/{id}" path parametrelerini olusturur
     * The api user sends a "GET" request and saves the returned response.
     # Api kullanicisi GET request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 401.
+    * The api user verifies that the "message" information in the response body is, "Unauthenticated.".
+
 
   @TC_1803
   Scenario:admin Send a GET request to the api/merchant/{id} endpoint  that does not
@@ -37,3 +39,4 @@ Feature: As an administrator (admin), I want to be able to access the detailed i
     * The api user sends a "GET" request and saves the returned response.
     # Api kullanicisi GET request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 203.
+    * The api user verifies that the "message" information in the response body is, "there is no merchant with this id".

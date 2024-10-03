@@ -11,3 +11,6 @@ database:
   URL: "jdbc:mysql://195.35.59.63/u201212290_agilesqa"
   USERNAME: "u201212290_agilesuserqa"
   PASSWORD: "xL9vnKqYw|3"
+
+emrah: 123
+

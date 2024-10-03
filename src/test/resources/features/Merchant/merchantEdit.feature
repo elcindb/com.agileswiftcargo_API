@@ -20,16 +20,18 @@ Feature: As an administrator (admin), I want to be able to update the informatio
 
     Examples:
       | id  | business_name | mobile      | email                  |
-      | 545 | merchant_Test | 12345678978 | merchantedit@gmail.com |
+      | 631 | merchant_Test | 12345678978 | merchantedit@gmail.com |
 
   @TC_2002
   Scenario Outline: admin When a PATCH request is sent to the api/merchant/edit/{id} endpoint with valid authorization information with the correct (id) and no data, it should be verified that the status code returned is 400 and the message information in the response body is "No data to update".
     * The api user sets "api/merchant/edit/<id>" path parameters.
     * The api user prepares a PATCH request containing no information to send to the api merchantedit endpoint.
-    * The api user sends a "PATCH" request, saves the returned response, and verifies that the status code is '400' with the reason phrase Bad Request.
+    * The api user sends a "PATCH" request and saves the returned response.
+    * The api user verifies that the status code is 400.
+    * The api user verifies that the "message" information in the response body is "No data to update".
     Examples:
       | id  |
-      | 525 |
+      | 631 |
 
   @TC_2003
   Scenario Outline: admin When a PATCH body (business_name, mobile, email) without an (id) is sent to the api/merchant/edit/{id} endpoint with valid authorization information, the status code returned is 203 and the message in the response body is "there is no merchant with this id.",

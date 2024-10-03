@@ -50,6 +50,7 @@ public class MerchantStepDef extends BaseTest {
 
         System.out.println("POST Request Body : " + API_Stepdefinitions.requestBody);
     }
+
     @Given("The api user prepares a PATCH request containing {string}, {string} and {string} information to send to the api merchantedit endpoint.")
     public void the_api_user_prepares_a_patch_request_containing_and_information_to_send_to_the_api_merchantedit_endpoint(String business_name, String mobile, String email) {
         API_Stepdefinitions.requestBody = builder
@@ -70,6 +71,17 @@ public class MerchantStepDef extends BaseTest {
         API_Methods.assertBody(key,value);
 
     }
+
+    @Given("The api user verifies that the {string} information in the response body is,  {string}.")
+    public void the_api_user_verifies_that_the_message_information_in_the_response_body_is_no_id(String message,String icerik) {
+        API_Methods.assertBody(message,icerik);
+    }
+    @Given("The api user verifies that the status code is, {int}.")
+    public void the_api_user_verifies_that_the_status_code_is(int code) {
+        API_Methods.statusCodeAssert(code);
+
+    }
+
 
 
 }
