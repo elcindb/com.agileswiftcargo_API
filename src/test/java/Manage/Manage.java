@@ -23,5 +23,7 @@ public class Manage extends JDBC_Structure_Methods {
     private String getCategoriesupdete() {
         return categoriesupdete;
     }
+
+    private String US_13_hub = "select SUM(amount) as Total from u201212290_agilesqa.hub_payments where hub_id=328;";
 }
 
