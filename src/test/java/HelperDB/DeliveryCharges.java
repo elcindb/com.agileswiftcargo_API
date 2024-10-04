@@ -18,6 +18,8 @@ public class DeliveryCharges {
     private int status;
 
 
+
+
     public DeliveryCharges() {
         this.category_id = faker.number().numberBetween(1, 6);
         this.weight = faker.number().numberBetween(1, 10);
@@ -28,4 +30,5 @@ public class DeliveryCharges {
         this.position = faker.number().numberBetween(1, 5);
         this.status = 0;
     }
+
 }

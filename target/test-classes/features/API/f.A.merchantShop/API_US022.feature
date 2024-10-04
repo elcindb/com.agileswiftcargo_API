@@ -10,6 +10,9 @@ Feature: As an administrator (admin) I want to be able to access Shop List via A
     * The api user verifies the information in the response body for the entry with the specified <dataindex> index, including <merchant_id>, "<name>", "<contact_no>","<address>", <status>, <default_shop>, "<created_at>" and "<updated_at>".
     # Api kullanıcısı response body icindeki <dataIndex> indexe sahip olanin <merchant_id>, "<name>", "<contact_no>","<address>", "<status>", "<default_shop>", "<created_at>" ve "<updated_at>" bilgilerini doğrular.
 
+                # burada bir sorun var !!
+
+
     Examples:
       | dataindex | merchant_id | name       | contact_no   | address    | status | default_shop | created_at                 | updated_at                  |
       | 1         |  8          | Prof Cargo | 33358975556  | New York   | 1      | 0            |2024-09-24T19:22:41.000000Z | 2024-09-24T19:22:41.000000Z |

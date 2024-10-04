@@ -15,3 +15,5 @@ Feature: As an administrator (admin) I want to be able to access the Delivery Ma
   Scenario: invalid token When a GET request is sent to the api/deliveryman/list endpoint with invalid authorization information, it should be verified that the status code returned is 401 and the message information in the response body is "Unauthenticated.".
     * The api user sets "api/hub/list" path parameters.
     * The api user sends a "GET" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+
+

@@ -1,4 +1,4 @@
-Feature: As an administrator (admin) I want to be able to create a new todo record via API connection.
+Feature: As an administrator (admin), I want to be able to update the status information of the todo with the specified id number via the API connection.
 
   @TC_5701
   Scenario: admin Send a GET request to the api/todo/status-update/{id} endpoint without an id and with valid authorization, verify that the response status code is 200 and the message in the response body is 'Status Updated.'
@@ -21,10 +21,24 @@ Feature: As an administrator (admin) I want to be able to create a new todo reco
 
   @TC_5704
   Scenario Outline: admin Send a GET a request is sent with an unregistered (update) (id), the status code returned is 203 and the message in the response body is "there is no deliveryman with this id".
-    * The api user sets "aapi/todo/status-update/{id}" path parameters.
+    * The api user sets "api/todo/status-update/{id}" path parameters.
     * The api user sends a "GET" request and saves the returned response.
     * The api user verifies that the status code is 203.
     * The api user verifies that the "message" information in the response body is "there is no deliveryman with this id".
     Examples:
       | id     |
       | 123123 |
+
+  @TC_5705
+  Scenario Outline: admin Send a GET request to the api/todo/status-update/{id} endpoint without an id and with valid authorization, verify that the response status code is 200 and the message in the response body is 'Status Updated.'
+    * The api user sets "api/todo/status-update/{id}" path parameters.
+    * The api user sends a "GET" request and saves the returned response.
+    * The api user verifies that the status code is 200.
+    * The api user verifies that the "message" information in the response body is "Status Updated".
+    * The api user verifies that the "data.id" is "106" by sending a GET request to the "api" "todo" endpoint with the "data" "New ID" returned in the response body.
+    Examples:
+      | success | message          | data.id  | data.status |
+      | true     | Status Updated  | 106  | 3      |
+
+
+

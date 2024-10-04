@@ -142,17 +142,16 @@ public class API_ParcelStepDef extends BaseTest {
         assertEquals(cash_collection, repJP.getString("data.cash_collection"));
     }
 
-    @Given("The api user sends a POST request and saves the returned response.")
-    public void the_api_user_sends_a_post_request_and_saves_the_returned_response() {
-        response = given()
-                .spec(spec)
-                .contentType(ContentType.JSON)
-                .when()
-                .body(requestBody)
-                .post(API_Methods.fullPath);
-
-        response.prettyPrint();
-    }
+   @Given("The api user sends a POST request and saves the returned response")
+   public void the_api_user_sends_a_post_request_and_saves_the_returned_response() {
+       response = given()
+               .spec(spec)
+               .contentType(ContentType.JSON)
+               .when()
+               .body(requestBody)
+               .post(API_Methods.fullPath);
+       response.prettyPrint();
+   }
 
 
 

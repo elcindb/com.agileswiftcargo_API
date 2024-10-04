@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="0.172">
-    <testcase classname="As an administrator (admin) I want to be able to create a new todo record via API connection." name="admin Send a GET a request is sent with an unregistered (update) (id), the status code returned is 203 and the message in the response body is &quot;there is no deliveryman with this id&quot;." time="0.036">
-        <system-out><![CDATA[* The api user sets "aapi/todo/status-update/{id}" path parameters..........passed
-* The api user sends a "GET" request and saves the returned response........passed
-* The api user verifies that the status code is 203.........................passed
-* The api user verifies that the "message" information in the response body is "there is no deliveryman with this id"..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="1.343">
+    <testcase classname="Delete the records with status:0 in the deliverycategories table via database and verify that they are deleted." name="verify that the deliverycategories information is deleted" time="0.995">
+        <system-out><![CDATA[* Database connection established...........................................passed
+* verify the category with status 1 is to be deleted........................passed
+* Database closed...........................................................passed
 ]]></system-out>
     </testcase>
 </testsuite>
