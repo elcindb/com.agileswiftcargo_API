@@ -14,7 +14,6 @@ Feature: As an administrator (admin), I want to be able to filter among the deli
       | email  |
       | burhan |
 
-  @ab
   Scenario Outline: invalid token When a POST body with invalid authorization information and correct data (name or email) is sent to the api/deliveryman/filter endpoint, it should be verified that the status code returned is 401 and the message information in the response body is "Unauthenticated.".
     * The api user sets "api/deliveryman/filter" path parameters.
     * The api user prepares a POST request containing "<email>" information to send to the api deliverymanfilter endpoint.
