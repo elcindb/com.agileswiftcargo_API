@@ -24,6 +24,10 @@ public class Manage extends JDBC_Structure_Methods {
         return categoriesupdete;
     }
 
-    private String US_13_hub = "select SUM(amount) as Total from u201212290_agilesqa.hub_payments where hub_id=328;";
+    private String US_13_hub ="select SUM(amount) as Total from u201212290_agilesqa.hub_payments where hub_id=328;";
+
+    private String US_14_hub ="SELECT name, address FROM u201212290_agilesqa.hubs  WHERE address LIKE CONCAT('%', name, '%') AND name like BINARY 'S%';";
+
+    private String US_15_merchant ="select delivery_charge_id, sum(sub_city) as sub_city_total from u201212290_agilesqa.merchant_delivery_charges where merchant_id=2 GROUP BY delivery_charge_id;";
 }
 
