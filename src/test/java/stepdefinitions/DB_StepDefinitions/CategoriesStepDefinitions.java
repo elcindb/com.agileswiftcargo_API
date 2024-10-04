@@ -5,20 +5,24 @@ import HelperDB.DeliveryCategories;
 import HelperDB.JDBC_Structure_Methods;
 import Manage.Manage;
 import io.cucumber.java.en.Given;
+import org.junit.Assert;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import static HelperDB.CommonData.result;
 import static HelperDB.DeliveryCategories.generateCategory;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class CategoriesStepDefinitions extends Manage {
     PreparedStatement preparedStatement;
 
     CommonData data = new CommonData();
     int silinicekStatus;
+    int intResult;
     int silinicekPOsition;
     int updatedRows;
 
@@ -61,11 +65,29 @@ public class CategoriesStepDefinitions extends Manage {
     @Given("verify the category with status {int} is to be deleted")
     public void the_category_with_status_is_to_be_deleted(Integer statusNo) throws SQLException {
         query=getDelivery_categories();
+         silinicekID=10;
         preparedStatement=JDBC_Structure_Methods.getPraperedStatement(query);
         preparedStatement.setInt(1,statusNo);
+    }
 
 
 
+    @Given("The results of the Delete Query are validated.")
+    public void the_results_of_the_delete_query_are_validated() throws SQLException {
+        // Replace `Manage.getPraperedStatement(query).toString()` with actual SQL query.
+        String controlQuery = "SELECT * FROM deliverycategories WHERE id = ?";  // Use actual table and column
+
+        // Prepare the statement
+        preparedStatement = JDBC_Structure_Methods.getPraperedStatement(controlQuery);
+
+        // Correctly set the placeholder index (starts from 1, not 0)
+        preparedStatement.setInt(1, silinicekID);
+
+        // Execute the query
+        resultSet = preparedStatement.executeQuery();
+
+        // Validate that no result exists, meaning the row is deleted
+        assertFalse(resultSet.next());
 
     }
 
